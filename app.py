@@ -7,8 +7,8 @@ import pygame
 
 
 #select model for prediction
-# MODEL = 'SVC'
-MODEL = 'KERAS'
+MODEL = 'SVC'
+# MODEL = 'KERAS'
 
 # trained on 8X8 images 
 if(MODEL=='SVC'):
@@ -30,7 +30,7 @@ green = [0,255,0]
 draw_on = False
 last_pos = (0, 0)
 color = (255, 128, 0)
-radius = 20
+radius = 10
 font_size = 500
 
 #initializing screen 

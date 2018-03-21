@@ -19,7 +19,7 @@ file_name = 'models_svc/clf.pkl'
 
 IS_TRIAN = False
 
-
+print("Using SVC of sklearn\n")
 if(IS_TRIAN==True):
     digits = datasets.load_digits()
     #print(digits.images.dtype) #for getting data type of image which is float64

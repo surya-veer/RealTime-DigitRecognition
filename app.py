@@ -7,8 +7,8 @@ import pygame
 
 
 #select model for prediction
-MODEL = 'SVC'
-# MODEL = 'KERAS'
+# MODEL = 'SVC'
+MODEL = 'KERAS'
 
 # trained on 8X8 images 
 if(MODEL=='SVC'):

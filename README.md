@@ -32,7 +32,7 @@ This is the list of dependencies for running this application.
 ## Choosing model
    **SVC of sklearn:** comment ```KERARS``` and uncomment ```SVC``` <br>
    **Sequential model:** comment ```SVC``` and uncomment ```KERARS```<br>
-[Pygame window](assets/choosing_model.png "Choosing model" )<br><br>
+![Pygame window](assets/choosing_model.png "Choosing model" )<br><br>
 
 
 

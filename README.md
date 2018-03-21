@@ -22,7 +22,7 @@ This is the list of dependencies for running this application.
 2. Extract to some location
 3. First, run **```app.py```** from **```RealTime-DigitRecognition```** folder.<br>
     Now, Pygame window will open. It will look like this.<br><br>
-    ![Pygame window](assets/pygame_window.png =400x "Pygame window")<br><br>
+    ![Pygame window](assets/pygame_window.png =400x)<br><br>
 
 
 

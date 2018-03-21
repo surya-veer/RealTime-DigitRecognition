@@ -33,7 +33,7 @@ clf = joblib.load(file_name)
 
 
 def check():
-    img = misc.imread('1.png')
+    img = misc.imread('assets/out.png')
     #imverting the image
     img = 255 - cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     

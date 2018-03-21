@@ -2,7 +2,7 @@
 
 ## Sample Images:
 These are some sample images of the handwritten character from mnist dataset. <br><br>
-![sample images](assets/sample_images.png "images in mnist dataset")<br><br>
+							![sample images](assets/sample_images.png "images in mnist dataset")<br><br>
 
 ## Dependencies
 This is the list of dependencies for running this application.
@@ -22,7 +22,7 @@ This is the list of dependencies for running this application.
 2. Extract to some location
 3. First, run **```app.py```** from **```RealTime-DigitRecognition```** folder.<br>
     Now, Pygame window will open. It will look like this.<br><br>
-    ![Pygame window](assets/pygame_window.png "Pygame window" )<br><br>
+   									 ![Pygame window](assets/pygame_window.png "Pygame window" )<br><br>
 
 
 

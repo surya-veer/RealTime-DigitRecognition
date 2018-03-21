@@ -30,14 +30,16 @@ This is the list of dependencies for running this application.
     The left button is for drawing.
 
 ## Choosing model
-   **SVC of sklearn:** comment ```KERARS``` and uncomment ```SVC``` <br>
-   **Sequential model:** comment ```SVC``` and uncomment ```KERARS```<br>
+Edit in ```app.py```
+**SVC of sklearn:** comment ```KERARS``` and uncomment ```SVC```  <br>
+**Sequential model:** comment ```SVC``` and uncomment ```KERARS```<br>
+<br>
 ![Pygame window](assets/choosing_model.png "Choosing model" )<br><br>
 
 
+## Demo
+![Pygame window](assets/demo.gif "Demo gif" )<br><br>
 
-
-	
 
 
 

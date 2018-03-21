@@ -4,7 +4,23 @@
 ###############################################################
 
 import pygame
-from models_svc import digit_recognition
+
+
+#select model for prediction
+# MODEL = 'SVC'
+MODEL = 'KERAS'
+
+# trained on 8X8 images 
+if(MODEL=='SVC'):
+	from models_svc import digit_recognition
+
+# trained on 28X28 images 
+if(MODEL=='KERAS'):
+	from models_keras import digit_recognition
+
+
+
+
 
 #pre defined colors, pen radius and font color
 black = [0,0,0]

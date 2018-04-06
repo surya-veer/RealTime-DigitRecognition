@@ -5,7 +5,6 @@
 
 import pygame
 
-
 # select model for prediction
 # MODEL = 'SVC'
 MODEL = 'KERAS'

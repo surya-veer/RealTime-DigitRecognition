@@ -52,7 +52,7 @@ Edit in ```app.py``` <br>
 ## Multi digit reconition
 I am developing an efficient model for detection multiple digits on a single frame like number plate, phone number, cheque number etc. <br>
 Here are some results:
-![Pygame window](assets/digits.gif "multi digits" )
+![Pygame window](assets/digits.png "multi digits" )
 
 ## Demo
 ![Pygame window](assets/demo.gif "Demo gif" )<br><br>

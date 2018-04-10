@@ -2,7 +2,7 @@
 RealTime DigitRecognition using keras/SVC and pygame.
 
 ## Overview
-Recently Deep Convolutional Neural Networks (CNNs) becomes one of the most appealing approaches and has been a crucial factor in the variety of recent success and challenging machine learning applications such as object detection, and face recognition. Therefore, CNNs is considered our main model for our challenging tasks of image classification. Specifically, it is used for is one of high research and business transactions. Handwriting digit recognition application is used in different tasks of our real-life time purposes. Precisely, it is used in vehicle number plate detection, banks for reading checks, post offices for sorting letter, and many other related tasks.<br>
+Recently Deep Convolutional Neural Networks (CNNs) becomes one of the most appealing approaches and has been a crucial factor in the variety of recent success and challenging machine learning applications such as object detection, and face recognition. Therefore, CNNs is considered our main model for our challenging tasks of image classification. Specifically, it is used for is one of high research and business transactions. Handwriting digit recognition application is used in different tasks of our real-life time purposes. Precisely, it is used in vehicle number plate detection, banks for reading checks, post offices for sorting letter, and many other related tasks.<br><br>
 	![sample images](assets/out.png "applications ")
 	
 ## Description
@@ -49,6 +49,10 @@ Edit in ```app.py``` <br>
 <br>
 ![Pygame window](assets/choosing_model.png "Choosing model" )<br><br>
 
+## Multi digit reconition
+I am developing an efficient model for detection multiple digits on a single frame like number plate, phone number, cheque number etc. <br>
+Here are some results:
+![Pygame window](assets/digits.gif "multi digits" )
 
 ## Demo
 ![Pygame window](assets/demo.gif "Demo gif" )<br><br>

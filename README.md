@@ -26,7 +26,7 @@ This is the list of dependencies for running this application.
  * **Pygame**
  * **Pandas**
  * **Numpy**
- * **Secipy**
+ * **Scipy**
  * **Matplotlib**
  
   

@@ -1,21 +1,10 @@
 ###############################################################
-# ########          By: suryaveer @IIT Indore         ####### #
-# ########     GITHUB: https://github.com/surya-veer  ####### #
+##########          By: suryaveer @IIT Indore         #########
+##########     GITHUB: https://github.com/surya-veer  #########
 ###############################################################
 
 import pygame
-
-# select model for prediction
-# MODEL = 'SVC'
-MODEL = 'KERAS'
-
-if(MODEL == 'SVC'):
-    # trained on 8X8 images
-    from models_svc import digit_recognition
-elif(MODEL == 'KERAS'):
-    # trained on 28X28 images
-    from models_keras import digit_recognition
-
+from  process_image import get_output_image
 
 # pre defined colors, pen radius and font color
 black = [0, 0, 0]
@@ -25,33 +14,30 @@ green = [0, 255, 0]
 draw_on = False
 last_pos = (0, 0)
 color = (255, 128, 0)
-radius = 10
+radius = 7
 font_size = 500
 
+#image size
+width = 640
+height = 640
+
 # initializing screen
-screen = pygame.display.set_mode((1000, 500))
+screen = pygame.display.set_mode((width*2, height))
 screen.fill(white)
 pygame.font.init()
 
 
-def print_digit(num):
-    # line for partition
-    pygame.draw.rect(screen, white, [500, 0, 1000, 500])
 
-    # heading text
-    heading_font = pygame.font.SysFont('', 100)
-    heading = heading_font.render('Output is', False, green)
-    screen.blit(heading, (600, 20))
-
-    # output text
-    myfont = pygame.font.SysFont('', font_size)
-    output_text = myfont.render(str(num)[1], False, red)
-    screen.blit(output_text, (680, 130))
+def show_output_image(img):
+    surf = pygame.pixelcopy.make_surface(img)
+    surf = pygame.transform.rotate(surf, -270)
+    surf = pygame.transform.flip(surf, 0, 1)
+    screen.blit(surf, (width+2, 0))
 
 
 def crope(orginal):
-    cropped = pygame.Surface((500, 500))
-    cropped.blit(orginal, (0, 0), (0, 0, 500, 500))
+    cropped = pygame.Surface((width-5, height-5))
+    cropped.blit(orginal, (0, 0), (0, 0, width-5, height-5))
     return cropped
 
 
@@ -65,15 +51,15 @@ def roundline(srf, color, start, end, radius=1):
         pygame.draw.circle(srf, color, (x, y), radius)
 
 
-def draw_line():
-    pygame.draw.line(screen, black, [510, 0], [510, 500], 10)
+def draw_partition_line():
+    pygame.draw.line(screen, black, [width, 0], [width,height ], 8)
 
 
 try:
     while True:
         # get all events
         e = pygame.event.wait()
-        draw_line()
+        draw_partition_line()
 
         # clear screen after right click
         if(e.type == pygame.MOUSEBUTTONDOWN and e.button == 3):
@@ -92,20 +78,19 @@ try:
         # stop drawing after releasing left click
         if e.type == pygame.MOUSEBUTTONUP and e.button != 3:
             draw_on = False
-            fname = "assets/out.png"
+            fname = "out.png"
 
             img = crope(screen)
             pygame.image.save(img, fname)
-            res = digit_recognition.check()
-            print("Output is:=>>  ", res[0], '\n\n Getting...')
-            print_digit(res)
+
+            output_img = get_output_image(fname)
+            show_output_image(output_img)
 
         # start drawing line on screen if draw is true
         if e.type == pygame.MOUSEMOTION:
             if draw_on:
                 pygame.draw.circle(screen, color, e.pos, radius)
                 roundline(screen, color, e.pos, last_pos, radius)
-
             last_pos = e.pos
 
         pygame.display.flip()

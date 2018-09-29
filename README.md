@@ -42,17 +42,10 @@ This is the list of dependencies for running this application.
     The **right** button is for resetting screen.<br>
     The **left** button is for drawing.
 
-## Choosing model
-Edit in ```app.py``` <br>
-**SVC of sklearn:** comment ```KERARS``` and uncomment ```SVC```  <br>
-**Sequential model:** comment ```SVC``` and uncomment ```KERARS```<br>
-<br>
-![Pygame window](assets/choosing_model.png "Choosing model" )<br><br>
-
 ## Multi digit reconition
 I am developing an efficient model for detection multiple digits on a single frame like number plate, phone number, cheque number etc. <br>
 Here are some results:<br><br>
-![Pygame window](assets/digits.png.png "multi digits" )
+![Pygame window](assets/digits.png "multi digits" )
 
 ## Demo
 ![Pygame window](assets/demo.gif "Demo gif" )<br><br>

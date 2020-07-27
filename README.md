@@ -1,4 +1,4 @@
-# RealTime-DigitRecognition
+# RealTime-DigitRecognition ![](https://bit.ly/surya-veer-DigitRecognition)
 RealTime DigitRecognition using keras/SVC and pygame.[Project Report](https://github.com/surya-veer/RealTime-DigitRecognition/blob/master/Project%20Report.pdf)
 
 ## Overview

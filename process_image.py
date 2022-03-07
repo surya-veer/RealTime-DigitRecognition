@@ -50,13 +50,13 @@ def image_refiner(gray):
 
 
 
-def get_output_image(path):
+def get_output_image(img):
   
-    img = cv2.imread(path,2)
-    img_org =  cv2.imread(path)
-
-    ret,thresh = cv2.threshold(img,127,255,0)
-    im2,contours,hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    #img = cv2.imread(path,2)
+    #img_org =  cv2.imread(path)
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ret,thresh = cv2.threshold(img_gray,127,255,0)
+    contours,hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
 
     for j,cnt in enumerate(contours):
         epsilon = 0.01*cv2.arcLength(cnt,True)
@@ -68,10 +68,10 @@ def get_output_image(path):
         
         if(hierarchy[0][j][3]!=-1 and w>10 and h>10):
             #putting boundary on each digit
-            cv2.rectangle(img_org,(x,y),(x+w,y+h),(0,255,0),2)
+            cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
             
             #cropping each image and process
-            roi = img[y:y+h, x:x+w]
+            roi = img_gray[y:y+h, x:x+w]
             roi = cv2.bitwise_not(roi)
             roi = image_refiner(roi)
             th,fnl = cv2.threshold(roi,127,255,cv2.THRESH_BINARY)
@@ -82,6 +82,6 @@ def get_output_image(path):
             
             # placing label on each digit
             (x,y),radius = cv2.minEnclosingCircle(cnt)
-            img_org = put_label(img_org,pred,x,y)
+            img = put_label(img,pred,x,y)
 
-    return img_org
+    return img

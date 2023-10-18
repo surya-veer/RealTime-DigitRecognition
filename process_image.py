@@ -4,16 +4,26 @@ import matplotlib.pyplot as plt
 from scipy import ndimage
 import math
 from keras.models import load_model
+from cnn_model.one_layer_nn import OneLayerNN
+import torch
 
 
 # loading pre trained model
 model = load_model('cnn_model/digit_classifier.h5')
+one_layer_nn = OneLayerNN()
+one_layer_nn.load_state_dict(torch.load('cnn_model/model_weights.pth'))
 
 def predict_digit(img):
+    print(img.shape)
     test_image = img.reshape(-1,28,28,1)
     return np.argmax(model.predict(test_image))
-
-
+def predict(img):
+    img = torch.Tensor(img).reshape(-1, 28 * 28)
+    y_pred = one_layer_nn(img[:])
+    max_index = np.argmax(y_pred.detach().numpy())
+    return max_index
+    
+    
 #pitting label
 def put_label(t_img,label,x,y):
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -51,12 +61,11 @@ def image_refiner(gray):
 
 
 def get_output_image(path):
-  
     img = cv2.imread(path,2)
     img_org =  cv2.imread(path)
 
     ret,thresh = cv2.threshold(img,127,255,0)
-    im2,contours,hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    contours,hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
 
     for j,cnt in enumerate(contours):
         epsilon = 0.01*cv2.arcLength(cnt,True)
@@ -77,7 +86,7 @@ def get_output_image(path):
             th,fnl = cv2.threshold(roi,127,255,cv2.THRESH_BINARY)
 
             # getting prediction of cropped image
-            pred = predict_digit(roi)
+            pred = predict(roi)
             print(pred)
             
             # placing label on each digit

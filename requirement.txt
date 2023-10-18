@@ -7,3 +7,5 @@ pandas ==  2.1.1
 numpy == 1.26.0
 scipy == 1.11.3
 matplotlib == 3.8.0
+Pillow == 10.0.1
+torch == 2.1.0

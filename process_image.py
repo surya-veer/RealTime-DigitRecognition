@@ -4,14 +4,16 @@ import matplotlib.pyplot as plt
 from scipy import ndimage
 import math
 from keras.models import load_model
-from cnn_model.one_layer_nn import OneLayerNN
+from cnn_model.one_layer_nn import *
 import torch
 
 
 # loading pre trained model
-model = load_model('cnn_model/digit_classifier.h5')
+model = load_model('cnn_model/weight/digit_classifier.h5')
 one_layer_nn = OneLayerNN()
-one_layer_nn.load_state_dict(torch.load('cnn_model/model_weights.pth'))
+one_layer_nn.load_state_dict(torch.load('cnn_model/weight/model_weights.pth'))
+one_layer_nn_2 = OneLayerNN_2()
+one_layer_nn_2.load_weights('cnn_model/weight/weights.npz')
 
 def predict_digit(img):
     print(img.shape)
@@ -21,6 +23,12 @@ def predict(img):
     img = torch.Tensor(img).reshape(-1, 28 * 28)
     y_pred = one_layer_nn(img[:])
     max_index = np.argmax(y_pred.detach().numpy())
+    return max_index
+
+def predict_2(img):
+    img = np.array(img).reshape(-1, 28 * 28)
+    y_pred = one_layer_nn_2.forward(img)
+    max_index = np.argmax(y_pred)
     return max_index
     
     
@@ -86,7 +94,7 @@ def get_output_image(path):
             th,fnl = cv2.threshold(roi,127,255,cv2.THRESH_BINARY)
 
             # getting prediction of cropped image
-            pred = predict(roi)
+            pred = predict_2(roi)
             print(pred)
             
             # placing label on each digit

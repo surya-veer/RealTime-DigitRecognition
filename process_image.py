@@ -5,6 +5,7 @@ from scipy import ndimage
 import math
 from keras.models import load_model
 from cnn_model.one_layer_nn import *
+from cnn_model.softmax import SoftmaxRegression
 import torch
 
 
@@ -14,6 +15,8 @@ one_layer_nn = OneLayerNN()
 one_layer_nn.load_state_dict(torch.load('cnn_model/weight/model_weights.pth'))
 one_layer_nn_2 = OneLayerNN_2()
 one_layer_nn_2.load_weights('cnn_model/weight/weights.npz')
+softmax = SoftmaxRegression()
+softmax.load_weights("cnn_model/weight/softmax_weights.npz")
 
 def predict_digit(img):
     print(img.shape)
@@ -30,8 +33,12 @@ def predict_2(img):
     y_pred = one_layer_nn_2.forward(img)
     max_index = np.argmax(y_pred)
     return max_index
+def predict_3(img):
+    img = np.array(img).reshape(28 * 28)
+    predictions = softmax.softmaxPredict(img)
+    return predictions[0][0]
     
-    
+
 #pitting label
 def put_label(t_img,label,x,y):
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -94,7 +101,7 @@ def get_output_image(path):
             th,fnl = cv2.threshold(roi,127,255,cv2.THRESH_BINARY)
 
             # getting prediction of cropped image
-            pred = predict_2(roi)
+            pred = predict_3(roi)
             print(pred)
             
             # placing label on each digit

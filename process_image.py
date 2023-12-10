@@ -101,7 +101,7 @@ def get_output_image(path):
             th,fnl = cv2.threshold(roi,127,255,cv2.THRESH_BINARY)
 
             # getting prediction of cropped image
-            pred = predict_3(roi)
+            pred = predict_digit(roi)
             print(pred)
             
             # placing label on each digit

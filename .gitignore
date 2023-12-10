@@ -2,5 +2,4 @@
 *.pyc
 assets/out.png
 **/venv/
-**/weight/
 **.png

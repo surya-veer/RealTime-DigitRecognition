@@ -75,7 +75,7 @@ def image_refiner(gray):
 
 
 
-def get_output_image(path):
+def get_output_image(path, index = 1):
     img = cv2.imread(path,2)
     img_org =  cv2.imread(path)
 
@@ -101,7 +101,13 @@ def get_output_image(path):
             th,fnl = cv2.threshold(roi,127,255,cv2.THRESH_BINARY)
 
             # getting prediction of cropped image
-            pred = predict_digit(roi)
+            match index:
+                case 1: 
+                    pred = predict_digit(roi)
+                case 2:
+                    pred = predict(roi)
+                case 3:
+                    pred = predict_2(roi)                            
             print(pred)
             
             # placing label on each digit

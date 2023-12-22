@@ -6,6 +6,7 @@ black = [0, 0, 0]
 white = [255, 255, 255]
 red = [255, 0, 0]
 green = [0, 255, 0]
+light_gray = (200, 200, 200)
 draw_on = False
 last_pos = (0, 0)
 color = (255, 128, 0)
@@ -51,17 +52,23 @@ def draw_partition_line():
 
 def display_options_screen():
     font = pygame.font.Font(None, 36)
-    options = ["Option 1", "Option 2", "Option 3"]
+    options = ["Simple NN + Sigmoid", "Simple NN + Softmax", "CNN","KNN"]
     button_height = 50
     buttons = []
 
     for i, option in enumerate(options):
         button = pygame.Rect(width // 2 - 100, 100 + i * button_height, 200, 40)
         buttons.append(button)
-        pygame.draw.rect(screen, white, button)
+        
+        # Check if the mouse is inside the button's rectangle
+        if button.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(screen, light_gray, button)  # Change color when hovering
+        else:
+            pygame.draw.rect(screen, white, button)
+        
         text = font.render(option, True, black)
         screen.blit(text, (button.x + button.width // 2 - text.get_width() // 2,
-                           button.y + button.height // 2 - text.get_height() // 2))
+                        button.y + button.height // 2 - text.get_height() // 2))
 
     pygame.display.flip()
 
@@ -81,17 +88,24 @@ selected_option = None
 try:
     # Display options screen only once
     font = pygame.font.Font(None, 36)
-    options = ["Option 1", "Option 2", "Option 3"]
+    options = ["Simple NN + Sigmoid", "Simple NN + Softmax", "CNN","KNN"]
     button_height = 50
     buttons = []
 
     for i, option in enumerate(options):
         button = pygame.Rect(width // 2 - 100, 100 + i * button_height, 200, 40)
         buttons.append(button)
-        pygame.draw.rect(screen, white, button)
+        
+        # Kiểm tra nếu chuột nằm trong hình chữ nhật của nút
+        if button.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(screen, light_gray, button)  # Màu sắc thay đổi khi hover
+        else:
+            pygame.draw.rect(screen, white, button)
+        
         text = font.render(option, True, black)
         screen.blit(text, (button.x + button.width // 2 - text.get_width() // 2,
-                           button.y + button.height // 2 - text.get_height() // 2))
+                        button.y + button.height // 2 - text.get_height() // 2))
+
 
     pygame.display.flip()
 

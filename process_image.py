@@ -2,11 +2,16 @@ import cv2
 import numpy as np        
 import matplotlib.pyplot as plt
 from scipy import ndimage
+
+import torch
+
 import math
 from keras.models import load_model
-from cnn_model.one_layer_nn import *
-from cnn_model.softmax import SoftmaxRegression
-import torch
+from cnn_model.Class.one_layer_nn_class import *
+from cnn_model.Class.softmax import SoftmaxRegression
+from cnn_model.Class.knn_class import KNN
+
+
 
 
 # loading pre trained model
@@ -19,7 +24,6 @@ softmax = SoftmaxRegression()
 softmax.load_weights("cnn_model/weight/softmax_weights.npz")
 
 def predict_digit(img):
-    print(img.shape)
     test_image = img.reshape(-1,28,28,1)
     return np.argmax(model.predict(test_image))
 def predict(img):
@@ -37,7 +41,11 @@ def predict_3(img):
     img = np.array(img).reshape(28 * 28)
     predictions = softmax.softmaxPredict(img)
     return predictions[0][0]
-    
+
+def predict_knn(img):
+    img = np.array(img).reshape(28 * 28)
+    knn = KNN(9)
+    return knn.predict([img])[0]
 
 #pitting label
 def put_label(t_img,label,x,y):
@@ -107,7 +115,7 @@ def get_output_image(path, index = 1):
                 case 2:
                     pred = predict(roi)
                 case 3:
-                    pred = predict_2(roi)                            
+                    pred = predict_knn(roi)                            
             print(pred)
             
             # placing label on each digit

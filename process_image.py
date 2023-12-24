@@ -116,7 +116,7 @@ def get_output_image(path, index = 1):
                     pred = predict(roi)
                 case 3:
                     pred = predict_3(roi)      
-                case 3:
+                case 4:
                     pred = predict_knn(roi)                            
             print(pred)
             
